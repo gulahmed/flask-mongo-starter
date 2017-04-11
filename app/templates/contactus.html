@@ -3,7 +3,11 @@
 {% block title %} Contact us {%endblock %}
 {% block head_js %}
  {{ super() }}
-<script src="{{ url_for('static', filename= 'js/contact.js') }}" charset="utf-8"></script>
+{#
+  uncoment this block to test AJAX 
+ <script src="{{ url_for('static', filename= 'js/contact.js') }}" charset="utf-8"></script>
+#}
+
 
 {% endblock %}
 
@@ -24,7 +28,7 @@
      <div class="row">
               <div class="col-lg-6">
                 <div class="well bs-component">
-                  <form class="form-horizontal" action="{{ url_for('contactUs') }}" id="contactform" method="post">
+                  <form class="form-horizontal" action="{{ url_for('postcontactUs') }}" id="contactform" method="post">
                     <fieldset>
                       <legend>Legend</legend>
                       <div class="form-group">
