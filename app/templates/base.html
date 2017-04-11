@@ -1,4 +1,40 @@
-{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in ny other head content must come *after* these tags -->
+    <meta name="description" content="{% block metadescription%}{% endblock %}">
+   <meta name="keywords" content="{% block metakeywords%}{% endblock %}">
+    <title>
+    {% block title %}  LSDD starter Page {% endblock %}
+  </title>
+
+
+  {% block head_css %}
+
+  <link rel="stylesheet " href="{{ url_for('static', filename = 'css/bootstrap.css') }}" >
+  <link rel="stylesheet " href="{{ url_for('static', filename = 'css/custom.min.css') }}"  >
+  {% endblock %}
+
+  {% block head_js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  {% endblock %}
+
+
+
+
+
+{% endblock %}
+ </head>
+
+
 
   <body>
     <div class="container">

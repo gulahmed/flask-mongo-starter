@@ -1,7 +1,7 @@
 """
 A basic starter app  with the Flask framework and PyMongo
 """
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
@@ -28,8 +28,9 @@ def contactUs():
          "email":email,
          "comments": comments
         }
+        return jsonify(result=data);
 
-        return render_template("contactResponse.html",result=data)
+        #return render_template("contactResponse.html",result=data)
 
 
 
