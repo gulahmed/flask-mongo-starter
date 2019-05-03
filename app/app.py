@@ -2,22 +2,13 @@
 A basic starter app  with the Flask framework and PyMongo
 """
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-from flask_pymongo import PyMongo
+from pymongo import MongoClient
 
 
 app = Flask(__name__)
-
-app.config['MONGO_HOST'] = 'localhost'
-app.config['MONGO_PORT']='27017'
-app.config['MONGO_DBNAME']="lsdda"
-
-# connect to MongoDB with the defaults
-#mongo    = PyMongo(app)
-
-mongo = PyMongo(app,config_prefix='MONGO')
-
-
-
+   
+client = MongoClient('mongodb://172.17.0.2:27017/')
+db = client.lsdda
 
 @app.route('/')
 def home():
@@ -47,7 +38,7 @@ def postcontactUs():
         }
 
         try:
-            mongo.db.contactUs.insert_one(data)
+            client.db.contactUs.insert_one(data)
             return redirect(url_for('all_comments'))
         except err:
             return "Inesrt Failed: Something wentwrong"
@@ -58,11 +49,8 @@ def postcontactUs():
 
 @app.route('/comments')
 def all_comments():
-    comments = mongo.db.contactUs.find()
+    comments = client.db.contactUs.find()
     return render_template("comments.html", comments=comments)
-
-
-
 
 
 if __name__ == '__main__':
